@@ -32,23 +32,23 @@ class TestTableFormatter(unittest.TestCase):
         self.assertEqual(char_width('✅'), 2)
 
         # String width
-        self.assertEqual(str_width("AI Relay 演进里程碑路线图"), 25)
+        self.assertEqual(str_width("分布式系统架构演进路线图"), 24)
         self.assertEqual(str_width("Phase 0 (M0)"), 12)
         self.assertEqual(str_width("概念验证与基线评测"), 18)
 
-    def test_user_example_roadmap_table(self):
+    def test_spanning_title_box_table(self):
         before = """┌─────────────────────────────────────────────────────────────────────────────────────────┐
-│                               AI Relay 演进里程碑路线图                                  │
+│                               分布式系统架构演进路线图                                  │
 ├───────────────────┬───────────────────┬─────────────────────────┬───────────────────────┤
 │ Phase 0 (M0)      │ Phase 1 (M1)      │ Phase 2 (M2)            │ Phase 3 (M3)          │
-│ 概念验证与基线评测│ 单机 MVP 与试点交付│ 企业级 SaaS 多租户集群   │ 生产级治理与生态深化  │
+│ 原型验证与基线评估│ 单机系统与测试交付│ 企业级多租户集群体系    │ 生产级治理与全链路深化│
 │ [第 1 ~ 4 周]     │ [第 5 ~ 10 周]    │ [第 11 ~ 16 周]         │ [第 17 周及以后]      │
 ├───────────────────┼───────────────────┼─────────────────────────┼───────────────────────┤
-│ · 统一 API 转发验证│ · “API 铺”渠道池化│ · K8s + Envoy ExtProc   │ · 智能模型路由分类器  │
-│ · L0 规则检测引擎 │ · N:N 租户权限体系│ · PG (RLS) + Redis 集群 │ · 跨境数据驻留严格控制│
-│ · 基线模型横评集   │ · L1 ONNX 模型集成│ · 供应链/终端双边账本   │ · MCP 工具级 RBAC 治理│
-│ · 极简代理吞吐测试│ · 双向脱敏与内存Vault│ · 用户申报工作流 (PICS) │ · Agent 死循环熔断器  │
-│                   │ · SQLite-First 控制台│ · 零原文审计导出与合规报表│ · 国际化与 SSO 集成   │
+│ · 统一网关转发验证│ · 渠道连接池化管理│ · K8s + Ingress 网格    │ · 智能流量调度引擎    │
+│ · 规则检测过滤引擎│ · 租户权限隔离体系│ · PG (RLS) + Redis 集群 │ · 多活数据同步控制机制│
+│ · 性能基线压力测试│ · 基础模型推理集成│ · 账本核算与结算系统    │ · 统一权限 RBAC 治理  │
+│ · 极简代理吞吐压测│ · 内存敏感数据脱敏│ · 自动化审批流服务      │ · 全链路熔断保护机制  │
+│                   │ · 控制台管理仪表盘│ · 审计日志合规报表系统  │ · 国际化与企业 SSO 对接│
 └───────────────────┴───────────────────┴─────────────────────────┴───────────────────────┘"""
 
         formatted = format_table_block(before)
@@ -108,15 +108,27 @@ class TestTableFormatter(unittest.TestCase):
         self.assertTrue(lines[0].startswith('╭') and lines[0].endswith('╮'))
         self.assertTrue(lines[-1].startswith('╰') and lines[-1].endswith('╯'))
 
-    def test_user_pipe_table(self):
-        user_table = """| 里程碑 | 关键交付物 | 核心衡量指标 | 评审参与人 |
-|---|---|---|---|
-| **M0 (第4周末)** | POC 代理、L0 规则库、评测集报告 | L0 P95 < 2ms，召回率 > 99% | 架构师、合规顾问 |
-| **M1 (第10周末)** | 单机版 MVP、级联护栏、API铺与基础计费、Web UI | 护栏 P95 < 120ms，端到端功能闭环 | 研发团队、产品经理、首批内测用户 |
-| **M2 (第16周末)** | 多租户集群版、PG/Redis、FinOps 报表、PCPD 审计导出 | 可用性 99.95%，支持 50+ 企业租户并发 | 运维/SRE、合规官、财务运营 |
-| **M3 (第20周末)** | 动态意图路由、Agent 熔断、Envoy ExtProc、商用上线 | 智能路由节省 30%+ 成本，故障自愈 < 3s | 决策层、业务线负责人 |"""
+    def test_markdown_pipe_table(self):
+        pipe_table = """| 阶段 | 状态 | 备注 |
+| :--- | :---: | ---: |
+| M0 概念验证 | 完成 | 一切正常 |
+| M1 单机 MVP | 进行中 | 核心功能就绪 |"""
+        formatted = format_table_block(pipe_table)
+        lines = formatted.splitlines()
+        # Delimiter row should preserve alignment markings (: for center and right)
+        self.assertTrue(lines[1].startswith('|') and lines[1].endswith('|'))
+        self.assertIn(':----:', lines[1])  # Center aligned column
+        self.assertTrue(lines[1].rstrip(' |').endswith(':'))  # Right aligned column
 
-        formatted = format_table_block(user_table)
+    def test_generic_pipe_table(self):
+        table = """| 模块名称 | 核心交付物 | 关键衡量指标 | 评审参与人 |
+|---|---|---|---|
+| **M0 (阶段一)** | 原型验证、网关代理、评测集报告 | P95 < 5ms，可用率 > 99.9% | 架构组、业务负责人 |
+| **M1 (阶段二)** | 单机版核心系统、权限模块、Web 控制台 | 端到端功能闭环，压测达标 | 研发团队、产品经理、体验用户 |
+| **M2 (阶段三)** | 多租户集群版、分布式存储、合规审计导出 | 高可用 99.99%，支持并发集群 | 运维/SRE、合规官、财务运营 |
+| **M3 (阶段四)** | 智能动态路由、熔断自愈、生产正式发布 | 资源节省 30%+，故障自愈 < 3s | 决策层、各业务线主管 |"""
+
+        formatted = format_table_block(table)
         lines = formatted.splitlines()
 
         # Check all lines have identical display width
