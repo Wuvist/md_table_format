@@ -512,7 +512,7 @@ class PipeTable:
                     else:
                         d = '-' * w
                     delims.append(d)
-                out_lines.append(f"{self.indent}| {' | '.join(delims)} |")
+                out_lines.append("{}| {} |".format(self.indent, ' | '.join(delims)))
             else:
                 cells = []
                 for c, cell_text in enumerate(r):
@@ -529,7 +529,7 @@ class PipeTable:
                     else:
                         padded = cell_text + ' ' * diff
                     cells.append(padded)
-                out_lines.append(f"{self.indent}| {' | '.join(cells)} |")
+                out_lines.append("{}| {} |".format(self.indent, ' | '.join(cells)))
 
         return '\n'.join(out_lines)
 

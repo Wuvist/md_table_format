@@ -56,7 +56,7 @@ class TestTableFormatter(unittest.TestCase):
 
         # Check every line has exactly the same display width
         widths = [str_width(l) for l in lines]
-        self.assertTrue(len(set(widths)) == 1, f"Lines have different display widths: {widths}")
+        self.assertTrue(len(set(widths)) == 1, "Lines have different display widths: {}".format(widths))
 
         # Check column dividers align vertically across all rows
         # Line 0 is top border, Line 2 is middle border
@@ -121,7 +121,7 @@ class TestTableFormatter(unittest.TestCase):
 
         # Check all lines have identical display width
         widths = [str_width(l) for l in lines]
-        self.assertTrue(len(set(widths)) == 1, f"Line widths differ: {widths}")
+        self.assertTrue(len(set(widths)) == 1, "Line widths differ: {}".format(widths))
 
         # Check delimiter line uses | and dashes
         self.assertTrue(lines[1].startswith('|') and lines[1].endswith('|'))

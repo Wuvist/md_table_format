@@ -103,7 +103,7 @@ if sublime is not None:
                         formatted_count += 1
 
                 if not silent:
-                    view.window().status_message(f"MD Table Format: Formatted {formatted_count} selected table(s)")
+                    view.window().status_message("MD Table Format: Formatted {} selected table(s)".format(formatted_count))
                 return
 
             # If no selection, check if cursor is currently inside a table
@@ -223,4 +223,4 @@ if sublime is not None:
             settings.set("format_on_save", new_val)
             sublime.save_settings(SETTINGS_FILE)
             status = "enabled" if new_val else "disabled"
-            sublime.status_message(f"MD Table Format: Format on save is now {status}")
+            sublime.status_message("MD Table Format: Format on save is now {}".format(status))
