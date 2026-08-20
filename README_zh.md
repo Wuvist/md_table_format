@@ -4,47 +4,47 @@
 
 ---
 
-An intelligent Markdown and Unicode table alignment plugin for **Sublime Text 3 and 4**.
+专为 **Sublime Text 3 / 4** 设计的 Markdown 表格智能自动对齐插件。
 
-When editing Markdown files (both inside fenced code blocks ` ``` ` and in standard body text), this plugin formats and realigns **Unicode Box-drawing tables** and **Markdown pipe tables** with pixel-perfect precision according to **strict East Asian Monospace Width rules (1 CJK / Full-width character / Emoji = 2 column widths; 1 ASCII character = 1 column width)**.
-
----
-
-## 🌟 Key Features
-
-- 📏 **Strict East Asian Monospace Character Width Calculation**:
-  - CJK characters (Chinese, Japanese, Korean), full-width punctuation (`（）`, `【】`, `，`, `。`), and standard emojis (`🚀`, `✅`, `⭐`, etc.) are counted as **2 columns wide**.
-  - ASCII letters, digits, half-width punctuation, and spaces are counted as **1 column wide**.
-  - Zero-width characters (zero-width joiners, variation selectors, control marks) are counted as **0 columns wide**.
-- 📦 **Comprehensive Box Table Styles (Unicode & ASCII)**:
-  - Single-line box: `┌─┬─┐`, `│ │ │`, `├─┼─┤`, `└─┴─┘`
-  - Double-line box: `╔═╦═╗`, `║ ║ ║`, `╠═╬═╣`, `╚═╩═╝`
-  - Rounded-corner box: `╭─┬─╮`, `│ │ │`, `├─┼─┤`, `╰─┴─╯`
-  - Heavy-line box: `┏━┳━┓`, `┃ ┃ ┃`, `┣━╋━┫`, `┗━┻━┛`
-  - ASCII grid box: `+---+`, `|   |`, `+===+`
-- 🏷️ **Multi-Column Spanning Headers & Dynamic Junctions**:
-  - Automatically recognizes spanning title headers (e.g., top title banner), computes aggregate column width, and centers the text.
-  - Dynamically synthesizes topological border junctions (`┬`, `┴`, `┼`, `─`) according to adjacent row partitions.
-- 📝 **Markdown GFM Pipe Tables**:
-  - Formats standard `| col1 | col2 |` pipe tables.
-  - Preserves alignment indicators: `:---` (left), `:---:` (center), `---:` (right).
-- 💾 **Auto Format on Save**:
-  - Automatically scans and realigns tables when saving `.md` files (configurable for whole file or code-blocks only).
-- 🎯 **Context-Aware Formatting**:
-  - Cursor inside table: formats only the current table.
-  - Active selection: formats all tables intersecting the selection.
-  - No selection & outside tables: formats all tables in the document.
-- 🔌 **Zero Dependencies & Broad Compatibility**:
-  - Pure Python implementation with zero third-party packages.
-  - Compatible with **Sublime Text 3 (Python 3.3+)** and **Sublime Text 4 (Python 3.8+)** on macOS, Windows, and Linux.
+在编辑 Markdown 文件时（无论是在代码块 ` ``` ` 中还是普通正文中），本插件能按照**严格的等宽字体规则（1 个中文字符 / 全角字符 / Emoji = 2 个英文字宽）**，对各类 **Unicode Box-drawing 表格**及 **Markdown 管道表格**进行像素级精准对齐与重构排版。
 
 ---
 
-## 📸 Alignment Showcase
+## 🌟 核心特性
 
-### Example 1: Unicode Box-Drawing Table (Mixed CJK & Spanning Header)
+- 📏 **严格等宽字符宽度度量（East Asian Monospace Width）**：
+  - 中文字符（CJK 汉字）、全角符号（`（）`、`【】`、`，`、`。`）及标准 Emoji（`🚀`、`✅`、`⭐` 等）按 **2 列宽**计算。
+  - ASCII 字母、数字、半角标点符号及空格按 **1 列宽**计算。
+  - 零宽字符（Zero-width joiners、Variation Selectors 等）按 **0 列宽**计算。
+- 📦 **全边框样式支持（Unicode & ASCII Box Tables）**：
+  - 单线边框（Single Box）：`┌─┬─┐`、`│ │ │`、`├─┼─┤`、`└─┴─┘`
+  - 双线边框（Double Box）：`╔═╦═╗`、`║ ║ ║`、`╠═╬═╣`、`╚═╩═╝`
+  - 圆角边框（Rounded Box）：`╭─┬─╮`、`│ │ │`、`├─┼─┤`、`╰─┴─╯`
+  - 粗线边框（Heavy Box）：`┏━┳━┓`、`┃ ┃ ┃`、`┣━╋━┫`、`┗━┻━┛`
+  - ASCII 网格（ASCII Box）：`+---+`、`|   |`、`+===+`
+- 🏷️ **跨列大标题与智能连接符（Spanning Headers）**：
+  - 自动识别顶部或段落居中的通栏大标题行，自动计算合并列宽并精准居中。
+  - 依据上下行的列分布，动态生成符合拓扑结构的边框连接字符（`┬`、`┴`、`┼`、`─`）。
+- 📝 **标准 Markdown 管道表格（GFM Pipe Table）**：
+  - 支持 `| 列1 | 列2 |` 管道表格排版。
+  - 自动识别并保留列对齐修饰符：`:---`（左对齐）、`:---:`（居中对齐）、`---:`（右对齐）。
+- 💾 **保存时自动对齐（Auto Format on Save）**：
+  - 在保存 `.md` 文件时自动扫描并对齐表格（可配置仅对齐代码块中的表格或全文表格）。
+- 🎯 **智能上下文感知**：
+  - 光标在表格内：仅格式化当前光标所在表格。
+  - 选中区域：仅格式化选区覆盖的表格。
+  - 无选区且光标在空白处：格式化全文所有表格。
+- 🔌 **极致兼容性**：
+  - 纯 Python 原生实现，无外部第三方依赖。
+  - 完美兼容 **Sublime Text 3（Python 3.3+）** 及 **Sublime Text 4（Python 3.8+）**。
 
-#### Before Formatting (Mismatched visual widths causing jagged borders):
+---
+
+## 📸 对齐效果演示
+
+### 示例 1：Unicode Box-drawing 表格（含跨列标题与中英混排）
+
+#### 格式化前（字符数量不等导致的错位与锯齿）：
 ```text
 ┌───────────────────────────────────────────────────────────┐
 │                 分布式系统架构组件矩阵                     │
@@ -59,7 +59,7 @@ When editing Markdown files (both inside fenced code blocks ` ``` ` and in stand
 └──────────────┴──────────────┴──────────────┴──────────────┘
 ```
 
-#### After Formatting (Strict monospace alignment, perfect vertical borders):
+#### 格式化后（严格等宽、边框与分隔线完美垂直对齐）：
 ```text
 ┌───────────────────────────────────────────────────────────────────────────────┐
 │                            分布式系统架构组件矩阵                             │
@@ -76,9 +76,9 @@ When editing Markdown files (both inside fenced code blocks ` ``` ` and in stand
 
 ---
 
-### Example 2: Markdown Pipe Table (with Column Alignments)
+### 示例 2：标准 Markdown 管道表格（带对齐控制）
 
-#### Before Formatting:
+#### 格式化前：
 ```markdown
 | 模块名称 | 开发状态 | 优先级 | 负责人 | 预期完成时间 |
 |---|:---:|:---:|---|---|
@@ -88,7 +88,7 @@ When editing Markdown files (both inside fenced code blocks ` ``` ` and in stand
 | 多语言国际化支持 | 规划中 | P2 | Alice | 2027-Q1 |
 ```
 
-#### After Formatting:
+#### 格式化后：
 ```markdown
 | 模块名称           | 开发状态 | 优先级 | 负责人     | 预期完成时间 |
 | ------------------ | :------: | :----: | ---------- | ------------ |
@@ -100,19 +100,19 @@ When editing Markdown files (both inside fenced code blocks ` ``` ` and in stand
 
 ---
 
-## 🚀 Installation
+## 🚀 安装指南
 
-### Method 1: Manual Installation / Symlink (Recommended)
+### 方法 1：手动安装 / 软链接（推荐）
 
-1. In Sublime Text menu bar, navigate to **`Preferences` -> `Browse Packages...`** to open your `Packages` directory.
-2. Clone or symlink this repository into that folder with the folder name `md_table_format`:
+1. 在 Sublime Text 顶部菜单栏点击 **`Preferences` -> `Browse Packages...`** 打开 `Packages` 目录。
+2. 将此插件仓库克隆或软链接至该目录下，命名为 `md_table_format`：
 
 **macOS**:
 ```bash
-# Via Symlink
+# 软链接方式
 ln -s /path/to/md_table_format ~/Library/Application\ Support/Sublime\ Text/Packages/md_table_format
 
-# Or via Git Clone
+# 或通过 git clone
 cd ~/Library/Application\ Support/Sublime\ Text/Packages/
 git clone https://github.com/your-username/md_table_format.git
 ```
@@ -131,55 +131,55 @@ git clone https://github.com/your-username/md_table_format.git
 
 ---
 
-## ⌨️ Usage & Keybindings
+## ⌨️ 快捷键与使用方法
 
-| Action | macOS Shortcut | Windows / Linux Shortcut |
+| 操作功能 | macOS 快捷键 | Windows / Linux 快捷键 |
 | :--- | :--- | :--- |
-| **Format table under cursor / selection** | `Super + Alt + T` (`⌘ + ⌥ + T`) | `Ctrl + Alt + T` |
-| **Format all tables in document** | `Super + Alt + Shift + T` | `Ctrl + Alt + Shift + T` |
+| **格式化当前光标所在表格 / 选区表格** | `Super + Alt + T` (`⌘ + ⌥ + T`) | `Ctrl + Alt + T` |
+| **格式化当前文件中所有表格** | `Super + Alt + Shift + T` | `Ctrl + Alt + Shift + T` |
 
-### 1. Command Palette
-Press `Cmd + Shift + P` (Mac) or `Ctrl + Shift + P` (Win/Linux) and search for `MD Table`:
-- `MD Table Format: Format Table (Under Cursor / Selection)`
-- `MD Table Format: Format All Tables in Document`
-- `MD Table Format: Toggle Auto Format on Save`
+### 1. 命令面板 (Command Palette)
+按 `Cmd + Shift + P` (Mac) 或 `Ctrl + Shift + P` (Win/Linux)，输入关键字 `MD Table`：
+- `MD Table Format: Format Table (Under Cursor / Selection)` —— 格式化当前/选中表格
+- `MD Table Format: Format All Tables in Document` —— 格式化全文所有表格
+- `MD Table Format: Toggle Auto Format on Save` —— 快捷开启/关闭保存自动格式化
 
-### 2. Context Menu & Main Menu
-- **Context Menu**: Right-click anywhere in a Markdown file and select `Format Markdown Table`.
-- **Main Menu**: `Edit` -> `MD Table Format`.
+### 2. 菜单集成
+- **右键上下文菜单**：在任何 Markdown 文件中右键点击 `Format Markdown Table`。
+- **主菜单栏**：`Edit` -> `MD Table Format`。
 
 ---
 
-## ⚙️ Configuration Reference (`MDTableFormat.sublime-settings`)
+## ⚙️ 配置说明 (`MDTableFormat.sublime-settings`)
 
-Open `Preferences` -> `Package Settings` -> `MD Table Format` -> `Settings` to configure options:
+在 Sublime Text 中打开 `Preferences` -> `Package Settings` -> `MD Table Format` -> `Settings` 进行个性化调整：
 
 ```json
 {
-    // Auto-format tables when saving Markdown files (default: true)
+    // 是否在保存 Markdown 文件时自动格式化表格 (默认: true)
     "format_on_save": true,
 
-    // When formatting document or on save:
-    // - true: Only format tables inside fenced code blocks (``` ... ```)
-    // - false: Format all tables in the entire file (both inside and outside code blocks)
+    // 全文对齐或保存时：
+    // - true: 仅对齐代码块（``` ... ```）中的表格
+    // - false: 对齐 Markdown 文档中的所有表格（包含代码块内与正文表格）
     "format_in_code_blocks_only": false,
 
-    // Enable formatting for Unicode and ASCII box-drawing tables
+    // 是否启用 Unicode / ASCII Box 表格对齐
     "format_box_tables": true,
 
-    // Enable formatting for Markdown pipe tables (| a | b |)
+    // 是否启用 Markdown 管道表格对齐
     "format_pipe_tables": true,
 
-    // Treat Unicode Ambiguous East Asian Width ('A') characters as 2 columns (default false: 1 column)
+    // 是否将 Unicode 歧义宽度字符（Ambiguous，如特殊引号、标点等）视作 2 列宽 (默认 false: 视作 1 列宽)
     "ambiguous_as_wide": false
 }
 ```
 
 ---
 
-## 🧪 Running Unit Tests
+## 🧪 单元测试
 
-To run the built-in test suite verifying width calculation, box tables, and pipe tables:
+项目包含完整的单元测试，覆盖东亚宽字符度量、跨列居中大标题、各种边框样式与管道表格对齐。在项目根目录下运行：
 
 ```bash
 python3 -m unittest discover tests -v
