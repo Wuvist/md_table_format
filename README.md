@@ -44,8 +44,11 @@ When editing Markdown files (both inside fenced code blocks ` ``` ` and in stand
 
 ### Example 1: Unicode Box-Drawing Table (Mixed CJK & Spanning Header)
 
-#### Before Formatting (Mismatched visual widths causing jagged borders):
+![Unicode Box Table Preview](assets/box_table_preview.png)
+
+#### Raw Source Comparison:
 ```text
+[Before Formatting]
 ┌───────────────────────────────────────────────────────────┐
 │                 分布式系统架构组件矩阵                     │
 ├──────────────┬──────────────┬──────────────┬──────────────┤
@@ -57,10 +60,8 @@ When editing Markdown files (both inside fenced code blocks ` ``` ` and in stand
 │ · 限流熔断器 │ · 工作流引擎  │ · 多副本同步机制│ · Grafana 看板 │
 │ · 负载均衡分发│ · 弹性扩缩容  │ · 实时增量备份 │ · 智能异常预警 │
 └──────────────┴──────────────┴──────────────┴──────────────┘
-```
 
-#### After Formatting (Strict monospace alignment, perfect vertical borders):
-```text
+[After Formatting]
 ┌───────────────────────────────────────────────────────────────────────────────┐
 │                            分布式系统架构组件矩阵                             │
 ├──────────────────┬──────────────────┬────────────────────┬────────────────────┤
@@ -78,24 +79,50 @@ When editing Markdown files (both inside fenced code blocks ` ``` ` and in stand
 
 ### Example 2: Markdown Pipe Table (with Column Alignments)
 
-#### Before Formatting:
+![Markdown Pipe Table Preview](assets/pipe_table_preview.png)
+
+#### Raw Source Comparison:
 ```markdown
+[Before Formatting]
 | 模块名称 | 开发状态 | 优先级 | 负责人 | 预期完成时间 |
 |---|:---:|:---:|---|---|
 | 用户认证中心 (SSO) | 进行中 | P0 | 张三 | 2026-Q3 |
 | 高性能数据流管道 | 已完成 | P0 | 李四 / Bob | 2026-Q2 |
 | 实时指标看板展示 | 待排期 | P1 | 王五 | 2026-Q4 |
 | 多语言国际化支持 | 规划中 | P2 | Alice | 2027-Q1 |
-```
 
-#### After Formatting:
-```markdown
+[After Formatting]
 | 模块名称           | 开发状态 | 优先级 | 负责人     | 预期完成时间 |
 | ------------------ | :------: | :----: | ---------- | ------------ |
 | 用户认证中心 (SSO) |  进行中  |   P0   | 张三       | 2026-Q3      |
 | 高性能数据流管道   |  已完成  |   P0   | 李四 / Bob | 2026-Q2      |
 | 实时指标看板展示   |  待排期  |   P1   | 王五       | 2026-Q4      |
 | 多语言国际化支持   |  规划中  |   P2   | Alice      | 2027-Q1      |
+```
+
+---
+
+## 💡 Why Does Text Drift on Web/GitHub Previews & Recommended Fonts
+
+On web browsers (such as GitHub's web code block preview), default monospace fonts (e.g. `SF Mono`, `Consolas`) lack CJK glyphs. When rendering Chinese characters, the browser falls back to the system's proportional CJK font (e.g., `PingFang SC` or `Microsoft YaHei`). Since fallback CJK glyph widths are **not strictly 2.0x integer multiples** of Latin monospace characters in web browsers, visual border drift occurs on web pages.
+
+However, inside **Sublime Text, VS Code, or modern terminal emulators** configured with a true CJK monospace font, the text layout is strictly aligned with 100% mathematical precision.
+
+### 🎨 Recommended Fonts for Sublime Text
+
+To achieve perfect 1:2 Chinese-to-English alignment in your editor:
+
+1. **[Sarasa Gothic / Sarasa Mono SC (更纱黑体)](https://github.com/be5invis/Sarasa-Gothic)** — Specifically engineered for 1:2 CJK monospace alignment (Highly Recommended ⭐⭐⭐⭐⭐)
+2. **[Maple Mono CJK](https://github.com/subframe7536/maple-font)**
+3. **[Cascadia Code](https://github.com/microsoft/cascadia-code)**
+
+**Configuring Sublime Text**:
+Open `Preferences` -> `Settings` and add:
+```json
+{
+    "font_face": "Sarasa Mono SC",
+    "font_size": 13
+}
 ```
 
 ---
