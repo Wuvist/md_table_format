@@ -1,0 +1,19 @@
+{
+    // Auto format tables when saving markdown files
+    "format_on_save": true,
+
+    // When formatting document or on save:
+    // If true, only formats tables inside code blocks (``` ... ```).
+    // If false, formats tables both inside and outside code blocks.
+    "format_in_code_blocks_only": false,
+
+    // Enable formatting for Unicode and ASCII box-drawing tables
+    "format_box_tables": true,
+
+    // Enable formatting for standard Markdown pipe tables (| a | b |)
+    "format_pipe_tables": true,
+
+    // Treat Unicode Ambiguous East Asian Width ('A') characters as 2 columns instead of 1.
+    // Default is false (1 column width for Latin quotes, bullets, etc.).
+    "ambiguous_as_wide": false
+}

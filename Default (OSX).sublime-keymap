@@ -1,0 +1,16 @@
+[
+    {
+        "keys": ["super+alt+t"],
+        "command": "md_table_format",
+        "context": [
+            { "key": "selector", "operator": "equal", "operand": "text.html.markdown, source.gfm, text.markdown" }
+        ]
+    },
+    {
+        "keys": ["super+alt+shift+t"],
+        "command": "md_table_format_all",
+        "context": [
+            { "key": "selector", "operator": "equal", "operand": "text.html.markdown, source.gfm, text.markdown" }
+        ]
+    }
+]

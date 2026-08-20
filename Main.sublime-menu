@@ -1,0 +1,26 @@
+[
+    {
+        "id": "edit",
+        "children": [
+            { "caption": "-" },
+            {
+                "caption": "MD Table Format",
+                "children": [
+                    {
+                        "caption": "Format Table Under Cursor",
+                        "command": "md_table_format"
+                    },
+                    {
+                        "caption": "Format All Tables in Document",
+                        "command": "md_table_format_all"
+                    },
+                    { "caption": "-" },
+                    {
+                        "caption": "Toggle Auto Format on Save",
+                        "command": "md_table_format_toggle_save"
+                    }
+                ]
+            }
+        ]
+    }
+]

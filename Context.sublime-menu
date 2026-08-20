@@ -1,0 +1,10 @@
+[
+    { "caption": "-" },
+    {
+        "caption": "Format Markdown Table",
+        "command": "md_table_format",
+        "context": [
+            { "key": "selector", "operator": "equal", "operand": "text.html.markdown, source.gfm, text.markdown" }
+        ]
+    }
+]

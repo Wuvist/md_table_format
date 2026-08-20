@@ -1,0 +1,14 @@
+[
+    {
+        "caption": "MD Table Format: Format Table (Under Cursor / Selection)",
+        "command": "md_table_format"
+    },
+    {
+        "caption": "MD Table Format: Format All Tables in Document",
+        "command": "md_table_format_all"
+    },
+    {
+        "caption": "MD Table Format: Toggle Auto Format on Save",
+        "command": "md_table_format_toggle_save"
+    }
+]
